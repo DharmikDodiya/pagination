@@ -10,14 +10,22 @@
     </head>
 
     <body>
+        <h1 class="text text-center">User List</h1>
+        <div class="form-outline mb-4 container">
+            <input type="search" class="form-control" id="datatable-search-input">
+            <label class="form-label" for="datatable-search-input">Search</label>
+          </div>
+          <div id="datatable">
+          </div>
         <div class="container mt-5">
             <table class="table table-success table-hover">
                 <thead>
                 <tr style="background-color: cadetblue">
                     <th scope="col" width="1%">#</th>
-                    <th scope="col" width="15%">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col" width="10%">Username</th>
+                    <th scope="col" width="5%">Name</th>
+                    <th scope="col" width="5%">Email</th>
+                    <th scope="col" width="5%">Username</th>
+                    <th scope="col" width="5%">DateOfbirth</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -27,6 +35,7 @@
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->username }}</td>
+                            <td>{{ $user->date_of_birth}}</td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -21,3 +21,7 @@ Route::get('/', function () {
 
 
 Route::get('/users',[UserController::class,'showData']);
+
+Route::get('user', [UserController::class, 'index']);
+Route::get('list',[UserController::class,'getUser'])->name('userlist');
+
