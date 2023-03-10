@@ -1,57 +1,68 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Laravel Typeahead JS Autocomplete Search</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" />
-    <style>
-        .container {
-            max-width: 600px;
-        }
-    </style>
-</head>
+<html>
+ <head>
+  <title>search in laravel using AJAX</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+ </head>
+ <body>
+  <br />
+  <div class="container box">
+   <h3 align="center">Live search in laravel using AJAX</h3><br />
+   <div class="panel panel-default">
+    <div class="panel-heading fs-3">Search User Data</div>
+    <div class="panel-body">
+     <div class="form-group">
+      <input type="text" name="search" id="search" class="form-control" placeholder="Search User Data" />
+     </div>
+     <div class="table-responsive">
+      <h3 align="center">Total Data : <span id="total_records"></span></h3>
+      <table class="table table-dark">
+       <thead>
+        <tr>
+         <th class="fs-3">Name</th>
+         <th class="fs-3">Email</th>
+         <th class="fs-3">Username</th>
+         <th class="fs-3">BirthDate</th>
+        </tr>
+       </thead>
+       <tbody>
 
-
-<body>
-    <div class="container mt-5">
-        <div classs="form-group">
-            <input type="text" id="search" name="search" placeholder="Search" class="form-control" />
-        </div>
+       </tbody>
+      </table>
     </div>
-    <div class="container">
-        <table>
-            <tr>
-                <td>name</td>
-                <td>email</td>
-                <td>username</td>
-                <td>dob</td>
-            </tr>
-            <tr>
-                {{-- <td>{{$data['name']}}</td> --}}
-            </tr>
-        </table>
-    </div>
+    </div>    
+   </div>
+  </div>
+ </body>
 
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js">
-    </script>
-    <script type="text/javascript">
-        var route = "{{ url('list') }}";
-        $('#search').typeahead({
-            source: function (query, process) {
-                return $.get(route, {
-                    query: query
-                }, function (data) {
-                    console.log(data);
-                    return process(data);
-                    //return route = "{{url('list',compact('data'))}}";
-                });
-            }
-        });
-    </script>
-</body>
 </html>
+
+<script>
+$(document).ready(function(){
+
+ fetch_customer_data();
+
+ function fetch_customer_data(query = '')
+ {
+  $.ajax({
+   url:"{{ route('userlist') }}",
+   method:'GET',
+   data:{query:query},
+   dataType:'json',
+   success:function(data)
+   {
+    $('tbody').html(data.table_data);
+    $('#total_records').text(data.total_data);
+   }
+  })
+ }
+
+ $(document).on('keyup', '#search', function(){
+  var query = $(this).val();
+  fetch_customer_data(query);
+ });
+});
+</script>

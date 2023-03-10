@@ -20,8 +20,15 @@ Route::get('/', function () {
 
 
 
-Route::get('/users',[UserController::class,'showData']);
+Route::get('/users',[UserController::class,'getData']);
 
-Route::get('user', [UserController::class, 'index']);
-Route::get('list',[UserController::class,'getUser'])->name('userlist');
+Route::get('/userlist',[UserController::class,'getUser']);
+
+
+
+
+
+
+Route::get('/user', [UserController::class, 'index']);
+Route::get('/user/action',[UserController::class,'action'])->name('userlist');
 

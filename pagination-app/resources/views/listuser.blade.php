@@ -1,61 +1,61 @@
 <!DOCTYPE html>
-    <html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Datatable </title>
+    {{-- <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"
+      rel="stylesheet"
+      
+    /> --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- bootstrap5 dataTables css cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap4.min.css"
+    />
 
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Laravel 8 Pagination Demo - codeanddeploy.com</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
-    </head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.2/umd/popper.min.js" integrity="sha512-aDciVjp+txtxTJWsp8aRwttA0vR2sJMk/73ZT7ExuEHv7I5E6iyyobpFOlEFkq59mWW8ToYGuVZFnwhwIUisKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  </head>
 
-    <body>
-        <h1 class="text text-center">User List</h1>
-        <div class="form-outline mb-4 container">
-            <input type="search" class="form-control" id="datatable-search-input">
-            <label class="form-label" for="datatable-search-input">Search</label>
-          </div>
-          <div id="datatable">
-          </div>
-        <div class="container mt-5">
-            <table class="table table-success table-hover">
-                <thead>
-                <tr style="background-color: cadetblue">
-                    <th scope="col" width="1%">#</th>
-                    <th scope="col" width="5%">Name</th>
-                    <th scope="col" width="5%">Email</th>
-                    <th scope="col" width="5%">Username</th>
-                    <th scope="col" width="5%">DateOfbirth</th>
-                </tr>
-                </thead>
-                <tbody>
-                    @foreach($users as $user)
-                        <tr>
-                            <th scope="row">{{ $user->id }}</th>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->username }}</td>
-                            <td>{{ $user->date_of_birth}}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-
-            <div class="d-flex">
-                {!! $users->links() !!}
-            </div>
-        </div>
-
-        <div>
-            <ul class="pagination">
-                <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                <li class="active"><a href="#!">1</a></li>
-                <li class="waves-effect"><a href="#!">2</a></li>
-                <li class="waves-effect"><a href="#!">3</a></li>
-                <li class="waves-effect"><a href="#!">4</a></li>
-                <li class="waves-effect"><a href="#!">5</a></li>
-                <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-              </ul>
-        </div>
-    </body>
+  <body>
+    <h1 class="text text-center">using DataTable</h1>
+    <div class="container mt-4">
+      <table id="datatable" class="table table-dark table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>UserName</th>
+            <th>Birth Date</th>
+          </tr>
+        </thead>
+        <tbody>
+            @foreach($users as $user)
+            <tr>
+                <th scope="row">{{ $user->id }}</th>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->email }}</td>
+                <td>{{ $user->username }}</td>
+                <td>{{ $user->date_of_birth}}</td>
+            </tr>
+        @endforeach
+        </tbody>
+      </table>
+   
+    </div>
+    <!-- bootstrap5 dataTables js cdn -->
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $('#datatable').DataTable();
+      });
+    </script>
+  </body>
 </html>

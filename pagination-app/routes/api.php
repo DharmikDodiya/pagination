@@ -20,7 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/userlist',[UserController::class,'getData']);
-Route::get('/searchuser/{name}',[UserController::class,'searchData']);
-
-Route::get('/sortbydate',[UserController::class,'sortDate']);
+Route::post('/userlist',[UserController::class,'showData']);
